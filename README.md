@@ -1,5 +1,18 @@
-# UMAOSHI
+# うまぴ デモアプリ
 
-UMAOSHI app source. Static demo application built from the supplied HTML prototype.
+発表資料のコンセプト「うまぴ｜推しは馬でいい」を反映した、静的サイトとして公開できるデモです。
 
-The full application source and deployment configuration will be added in the next commit.
+## 起動方法
+`index.html` をブラウザで開くと動作します。ビルドや依存パッケージは不要です。
+
+## 公開
+Vercelではプロジェクトのルートにこの `index.html` を置けば静的サイトとして配信できます。GitHub連携する場合は、このフォルダをGitリポジトリのルートに配置してください。
+
+## デモの範囲
+- ファン向けタイムライン、馬の詳細、ギフト、月額サポート、使途レポート、イベント予約
+- 馬術部向けの受取・使途管理画面
+- 登壇者用のデモ進行パネル
+- サンプルデータおよび操作内容はデモ用です。サーバー保存や実決済は行わず、ページ再読み込みで初期状態に戻ります。
+
+## メディア
+写真・動画は元HTML内の埋め込みデータをそのまま保持しています。
