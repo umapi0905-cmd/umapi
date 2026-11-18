@@ -57,7 +57,7 @@
   .statusbar .sig{display:flex;gap:5px;align-items:center;font-size:12px}
   .app{flex:1;overflow:auto;scrollbar-width:none;position:relative}
   .app::-webkit-scrollbar{display:none}
-  .tabbar{height:78px;flex:none;border-top:1px solid var(--line);background:#fff;display:grid;grid-template-columns:repeat(4,1fr);padding:6px 6px 14px}
+  .tabbar{height:78px;flex:none;border-top:1px solid var(--line);background:#fff;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 6px 14px}
   .tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mute);font-size:10.5px;font-weight:600;border-radius:12px}
   .tab svg{width:24px;height:24px}
   .tab.on{color:var(--turf)}
@@ -319,6 +319,100 @@
     .sheet{max-height:calc(92% - env(safe-area-inset-top));padding-bottom:calc(28px + env(safe-area-inset-bottom));}
     input,select,textarea{font-size:16px;}
   }
+
+  /* ---------- unified typography and new fan features ---------- */
+  #app,#app *{font-family:inherit}
+  .tabbar{grid-template-columns:repeat(7,minmax(0,1fr));padding-left:3px;padding-right:3px}
+  .tab{font-size:9.5px;gap:2px;min-width:0}
+  .tab svg{width:21px;height:21px;flex:none}
+  .community-top,.dm-title{display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0}
+  .eyebrow{display:block;color:var(--turf-2);font-size:9px;font-weight:800;letter-spacing:.16em;margin:0 20px 3px}
+  .community-top .eyebrow,.dm-title .eyebrow{margin-left:20px}
+  .community-top .page,.dm-title .page{padding-top:0}
+  .community-compose{width:40px;height:40px;border-radius:50%;background:var(--turf);color:#fff;font-size:25px;line-height:1}
+  .community-horse-strip{display:flex;gap:8px;overflow-x:auto;padding:8px 20px 14px;scrollbar-width:none}
+  .community-horse-strip::-webkit-scrollbar{display:none}
+  .community-horse{display:flex;align-items:center;gap:7px;flex:none;border:1px solid var(--line);border-radius:999px;background:#fff;padding:6px 10px 6px 6px;font-size:12px;font-weight:700}
+  .community-horse.active{border:2px solid var(--turf);background:var(--tint);padding:5px 9px 5px 5px;color:var(--turf)}
+  .community-cover{margin:0 20px 14px;padding:16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#F1F6F1,#fff)}
+  .community-cover-head{display:flex;align-items:center;gap:10px}
+  .community-cover-head b{display:block;font-size:14px}
+  .community-cover-head small{display:block;color:var(--mute);font-size:10.5px;margin-top:2px}
+  .community-cover>p{font-size:13px;line-height:1.5;margin:12px 0;color:var(--ink)}
+  .community-stats{display:flex;gap:16px;color:var(--mute);font-size:10.5px;padding:8px 0 12px;border-top:1px solid var(--line)}
+  .community-stats b{color:var(--ink);font-size:13px}
+  .community-join{width:100%}
+  .community-feed-head{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;border-bottom:1px solid var(--line)}
+  .community-feed-head b{display:block;font-size:15px}
+  .community-feed-head small{display:block;font-size:11px;color:var(--mute);margin-top:2px}
+  .feed-sort{font-size:11px;color:var(--mute)}
+  .xpost{display:flex;gap:10px;padding:14px 20px;border-bottom:1px solid var(--line);background:#fff}
+  .xpost-avatar{flex:none}
+  .xpost-main{min-width:0;flex:1}
+  .xpost-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .xpost-meta b{font-size:13px}
+  .xpost-meta>span:not(.chip){font-size:10.5px;color:var(--mute)}
+  .xpost-meta .chip{font-size:9px;padding:3px 7px}
+  .xpost-main>p{font-size:13.5px;line-height:1.65;margin:7px 0 10px;white-space:pre-wrap}
+  .xpost-actions{display:flex;justify-content:space-between;max-width:320px}
+  .xpost-actions button{font-size:11px;color:var(--mute);padding:5px 3px}
+  .xpost-actions button:hover{color:var(--turf)}
+  .xcomment{background:var(--tint-2);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:11px;line-height:1.5}
+  .xcomment b{margin-right:5px}
+  .community-fab{display:block;margin:14px 20px 20px auto;background:var(--turf);color:#fff;border-radius:999px;padding:11px 18px;font-size:12px;font-weight:700;box-shadow:0 5px 16px #1b3a2d30}
+  .dm-page,.shop-page{padding-bottom:20px}
+  .dm-unread{font-size:10px;color:var(--live);background:#FBECEB;padding:5px 9px;border-radius:999px}
+  .dm-thread-head{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--line);margin-top:8px}
+  .dm-thread-head b{display:block;font-size:13px}
+  .dm-thread-head small{display:block;color:var(--mute);font-size:10.5px;margin-top:2px}
+  .dm-date{text-align:center;color:var(--mute);font-size:10px;padding:16px}
+  .dm-bubble-row{display:flex;align-items:flex-start;gap:8px;padding:0 16px}
+  .dm-bubble-wrap{max-width:min(82%,420px)}
+  .dm-bubble-wrap>small{font-size:10px;color:var(--mute);display:block;margin:0 0 5px 4px}
+  .dm-bubble{background:#fff;border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:13px;line-height:1.65}
+  .dm-video-card{margin-top:9px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .dm-video-card video{display:block;width:100%;max-height:420px;aspect-ratio:9/16;object-fit:contain;background:#18221c}
+  .dm-video-caption{padding:9px 11px}
+  .dm-video-caption b{display:block;font-size:12px}
+  .dm-video-caption small{display:block;color:var(--mute);font-size:10px;margin-top:3px}
+  .dm-time{display:block;text-align:right;color:var(--mute);font-size:9px;margin:5px 4px}
+  .dm-own{display:flex;align-items:flex-end;flex-direction:column;padding:18px 20px 8px}
+  .dm-own-bubble{background:var(--turf);color:#fff;border-radius:16px 4px 16px 16px;padding:10px 13px;font-size:12px;max-width:80%;line-height:1.5}
+  .dm-own small{font-size:9px;color:var(--mute);margin:4px 3px}
+  .dm-reply-note{text-align:center;color:var(--mute);font-size:10px;padding:14px 20px}
+  .dm-input{margin:0 16px;padding:8px 10px;border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;justify-content:space-between;color:#9AA49D;font-size:12px;background:#fff}
+  .dm-input button{background:var(--turf);color:#fff;border-radius:50%;width:30px;height:30px}
+  .shop-page>.eyebrow{margin-top:8px}
+  .shop-hero{margin:4px 20px 18px;border-radius:18px;padding:20px;background:linear-gradient(120deg,#1B3A2D,#47745A);color:#fff;display:flex;flex-direction:column;gap:7px;min-height:150px;justify-content:center}
+  .shop-hero span{font-size:9px;letter-spacing:.16em;color:#D7E5D9}
+  .shop-hero b{font-size:21px;line-height:1.35}
+  .shop-hero small{font-size:10.5px;color:#E0EBE2}
+  .shop-section-head{display:flex;justify-content:space-between;align-items:center;padding:0 20px 10px}
+  .shop-section-head b{font-size:15px}
+  .shop-section-head span{font-size:10px;color:var(--turf-2)}
+  .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+  .shop-item{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff;min-width:0}
+  .shop-art{height:128px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(145deg,#F3F5EE,#E5EEE6)}
+  .shop-art>span{font-size:55px;filter:drop-shadow(0 5px 3px #0002)}
+  .shop-art>small{position:absolute;bottom:8px;right:9px;font-size:8px;letter-spacing:.12em;color:#55715D}
+  .shop-art.file{background:linear-gradient(145deg,#F6F0E5,#EAD9C2)}
+  .shop-art.plush{background:linear-gradient(145deg,#F7EDE8,#EAD8D0)}
+  .shop-art.key{background:linear-gradient(145deg,#EAF0F7,#D9E4F0)}
+  .shop-item-info{padding:10px}
+  .shop-item-info b{display:block;font-size:12px;line-height:1.4;min-height:34px}
+  .shop-item-info small{display:block;font-size:10px;color:var(--mute);min-height:28px;margin-top:3px}
+  .shop-item-info strong{display:block;font-size:13px;margin:7px 0 9px}
+  .shop-item-info .btn{width:100%;font-size:10px;padding:9px 5px}
+  .shop-footnote{font-size:10px;color:var(--mute);padding:16px 20px}
+  @media(max-width:600px){
+    .tabbar{grid-template-columns:repeat(7,minmax(0,1fr));}
+    .tab{font-size:9px;letter-spacing:-.03em}
+    .tab svg{width:19px;height:19px}
+    .shop-grid{gap:9px;padding:0 12px}
+    .shop-art{height:112px}
+    .community-stats{gap:10px}
+  }
+
 </style>
 </head>
 <body>
@@ -455,6 +549,16 @@ const HORSES = [
    ped:{sire:'オトノカゼ', dam:'シズカナウミ', kids:[]}, next:'ev4',
    usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
 ];
+const PERSONALITY_TAGS = ['おとなしい','人懐っこい','怒りん坊','寂しがりや','好奇心旺盛','甘えん坊','マイペース','食いしん坊','慎重派','遊び好き'];
+const COAT_TAGS = ['鹿毛（かげ）','黒鹿毛（くろかげ）','青鹿毛（あおかげ）','青毛（あおげ）','栗毛（くりげ）','栃栗毛（とちくりげ）','芦毛（あしげ）','白毛（しろげ）','月毛（つきげ）','河原毛（かわらげ）','粕毛（かすげ）','駁毛（ぶちげ）','佐目毛（さめげ）','薄墨毛（うすずみげ）'];
+const HORSE_TAG_DEFAULTS = {
+  sora:{personality:['人懐っこい','好奇心旺盛','マイペース'],coat:'鹿毛（かげ）'},
+  minato:{personality:['好奇心旺盛'],coat:'青毛（あおげ）'},
+  yuzuki:{personality:['おとなしい','寂しがりや','甘えん坊'],coat:'栗毛（くりげ）'},
+  haru:{personality:['おとなしい','人懐っこい'],coat:'芦毛（あしげ）'},
+  tsukinoko:{personality:['好奇心旺盛','遊び好き'],coat:'栗毛（くりげ）'},
+  kaze:{personality:['おとなしい','慎重派','マイペース'],coat:'黒鹿毛（くろかげ）'}
+};
 const EVENTS = [
   {id:'ev1', m:'9月', d:'21', w:'日', horse:'minato', title:'第8R 出走（1400m）', place:'湾岸競馬場', kind:'race', stream:true, tour:{label:'現地観戦ツアー', price:12800, seats:8}},
   {id:'ev2', m:'10月', d:'12', w:'月・祝', horse:'sora', title:'全日本学生馬術大会 予選（障害飛越110cm）', place:'京阪奈馬術競技場', kind:'match', stream:true, tour:{label:'応援バスツアー', price:6500, seats:20}},
@@ -521,9 +625,14 @@ const OWNERS = {
 
 function freshState(){
   return {
-    mode:'fan', tab:'home', horseId:null, modal:null, filter:'すべて', query:'', step:1, zoom:1,
+    mode:'fan', tab:'home', horseId:null, modal:null, filter:'すべて', query:'', tagFilter:'', step:1, zoom:1,
     likes:{}, likeCounts:{p1:212,p10:341,p11:287,p2:388,p3:914,p4:76,p5:305,p6:141,p7:98,p8:120,p9:266},
     user:{name:'ゆき', oshi:['sora','yuzuki'], oshiF:['era'], tiers:{yuzuki:'light'}, total:12300, gifts:9, bookings:[]},
+    communityJoined:['sora','yuzuki'],
+    communityPosts:[
+      {id:'c1',h:'sora',by:'mio',when:'15分前',text:'ダノンイチロウの放牧中の表情、今日はいつもよりごきげんに見えますね！みなさんの好きな写真はどれですか？',comments:[{by:'K.T.',text:'砂を掘ってる写真が好きです！'}],likes:18},
+      {id:'c2',h:'yuzuki',by:'はなこ',when:'2時間前',text:'ユウヅキの長生きの秘訣、みんなで見守っていきたいですね。ふやかした飼料を完食した投稿にほっとしました。',comments:[{by:'Ashley',text:'毎日の小さな変化を共有できるのがうれしいです'}],likes:32}
+    ],
     posts:[
       {id:'p1', h:'sora', when:'10分前', live:true, video:'live', text:'厩舎ライブ配信中。顔を出して、通路を行く部員を見ています。'},
       {id:'p10', h:'sora', when:'45分前', img:'team', text:'手入れが終わって、部員と記念撮影。今日もよく付き合ってくれました。'},
@@ -634,14 +743,14 @@ function render(){
   if (S.mode === 'owner') app.innerHTML = viewOwner();
   else if (S.founderId) app.innerHTML = viewFounder(F(S.founderId));
   else if (S.horseId) app.innerHTML = viewHorse(H(S.horseId));
-  else app.innerHTML = ({home:viewHome, discover:viewDiscover, calendar:viewCalendar, mypage:viewMe})[S.tab]();
+  else app.innerHTML = ({home:viewHome, discover:viewDiscover, community:viewCommunity, dm:viewDM, shop:viewShop, calendar:viewCalendar, mypage:viewMe})[S.tab]();
   app.scrollTop = S.scroll[key] || 0;
   app.onscroll = () => { S.scroll[key] = app.scrollTop; };
   renderTabs(); renderModal(); renderSteps();
   $('#modeFan').classList.toggle('on', S.mode==='fan'); $('#modeOwner').classList.toggle('on', S.mode==='owner');
 }
 function renderTabs(){
-  const tabs = [['home','ホーム',I.home],['discover','さがす',I.search],['calendar','予定',I.cal],['mypage','マイページ',I.user]];
+  const tabs = [['home','ホーム',I.home],['discover','さがす',I.search],['community','交流',I.comment],['dm','DM','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H8l-4 4z"/><path d="M8 9h8M8 13h5"/></svg>'],['shop','グッズ','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1 13H5L4 8z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>'],['calendar','予定',I.cal],['mypage','マイページ',I.user]];
   $('#tabbar').innerHTML = S.mode==='owner'
     ? `<button class="tab on" style="grid-column:1/-1" data-act="mode" data-arg="fan">${I.back}ファン画面に戻る</button>`
     : tabs.map(([id,l,ic])=>`<button class="tab ${S.tab===id && !S.horseId && !S.founderId?'on':''}" data-act="tab" data-arg="${id}">${ic}<span>${l}</span></button>`).join('');
@@ -667,6 +776,18 @@ function foundersBlock(){
       return `<div class="fcard"><button data-act="founder" data-arg="${f.id}" style="text-align:left;width:100%">${favatar(f,44,20)}<b>${f.name}<span class="mute" style="font-weight:600;font-size:12px">　${f.role}</span></b><small>${f.line}</small><div class="bar"><i style="width:${Math.round(done/f.path.length*100)}%"></i></div><small class="num">軌跡 ${done}/${f.path.length}　次：${nx? nx.t:'—'}</small></button>
         <button class="btn ${isOshiF(f.id)?'soft':'ghost'} sm block" style="margin-top:10px" data-act="oshiF" data-arg="${f.id}">${isOshiF(f.id)? I.heartF+'推し中' : I.heart+'推す'}</button></div>`;}).join('')}</div></div>`;
 }
+function horseTagMarkup(h){
+  const d=HORSE_TAG_DEFAULTS[h.id] || {personality:[],coat:'鹿毛（かげ）'};
+  return `<div class="tag-cloud">${(d.personality||[]).map(t=>`<span class="tag personality">#${esc(t)}</span>`).join('')}<span class="tag coat">#${esc(d.coat)}</span></div>`;
+}
+function postTagMarkup(p){
+  const ps=p.personalityTags||[], coat=p.coatTag||'';
+  if(!ps.length&&!coat)return '';
+  return `<div class="post-tags">${ps.map(t=>`<span class="tag personality">#${esc(t)}</span>`).join('')}${coat?`<span class="tag coat">#${esc(coat)}</span>`:''}</div>`;
+}
+function selectedTagButtons(values,kind){
+  return values.map(t=>`<button type="button" class="${(S.modal[kind]||[]).includes(t)?'on':''}" data-act="toggleTag" data-arg="${kind}|${t}">${(S.modal[kind]||[]).includes(t)?'✓ ':''}${t}</button>`).join('');
+}
 function post(p){
   const h = H(p.h), liked = !!S.likes[p.id], locked = p.locked && !isSub(h.id);
   return `<article class="post">
@@ -678,6 +799,7 @@ function post(p){
       ${locked? `<div class="lock">${I.lock}<b>サポーター限定の投稿</b><span>月額500円から、${h.name}の限定コンテンツが見られます</span><button class="btn sm" style="background:#fff;color:var(--turf)" data-act="sub" data-arg="${h.id}">サポーターになる</button></div>`:''}
     </div>
     <p class="body">${locked? esc(p.text.replace(/：.*$/, '：（限定コンテンツ）')) : esc(p.text)}</p>
+    ${postTagMarkup(p)}
     <div class="acts">
       <button class="act ${liked?'liked':''}" data-act="like" data-arg="${p.id}">${liked?I.heartF:I.heart}<span class="num">${(S.likeCounts[p.id]||0).toLocaleString()}</span></button>
       <button class="act">${I.comment}<span>${p.id==='p3'?'48':p.id==='p1'?'96':'12'}</span></button>
@@ -752,19 +874,64 @@ function viewFounder(f){
 
 /* discover */
 function viewDiscover(){
-  const fs = ['すべて','現役競走馬','馬術馬','引退馬','産駒','乗馬'];
-  const list = S.horses.filter(h => (S.filter==='すべて' || h.type===S.filter) && (!S.query || (h.name+h.club+h.type+h.disc).includes(S.query)));
-  return `
-  <h1 class="page">さがす</h1>
-  <div class="search">${I.search.replace('<svg','<svg style="width:18px;height:18px"')}<input id="q" placeholder="馬の名前、クラブ、厩舎" value="${esc(S.query)}" data-act="query"></div>
+  const fs=['すべて','現役競走馬','馬術馬','引退馬','産駒','乗馬'];
+  const popularTags=[...PERSONALITY_TAGS,...COAT_TAGS];
+  const list=S.horses.filter(h=>{
+    const d=HORSE_TAG_DEFAULTS[h.id]||{personality:[],coat:''};
+    const hay=(h.name+h.club+h.type+h.disc+(d.personality||[]).join('')+d.coat).toLowerCase();
+    return (S.filter==='すべて'||h.type===S.filter)&&(!S.query||hay.includes(S.query.toLowerCase()))&&(!S.tagFilter||(d.personality||[]).includes(S.tagFilter)||d.coat===S.tagFilter);
+  });
+  return `<h1 class="page">推し馬をさがす</h1><p class="lead">名前・性格・毛色から、あなたの「好き」にぴったりの馬を発見。</p>
+  <div class="search">${I.search.replace('<svg','<svg style="width:18px;height:18px"')}<input id="q" placeholder="馬名・性格・毛色・クラブで検索" value="${esc(S.query)}" data-act="query"></div>
   <div class="filters">${fs.map(f=>`<button class="${S.filter===f?'on':''}" data-act="filter" data-arg="${f}">${f}</button>`).join('')}</div>
-  ${list.map(h=>`<div class="hrow"><button class="row grow" data-act="horse" data-arg="${h.id}" style="text-align:left"><div class="thumb">${h.hero && MEDIA[h.hero] ? `<img class="scene" src="${MEDIA[h.hero]}" alt="" style="object-fit:cover;object-position:${h.heroPos||'50% 50%'}">` : scene(h.coat,'day',h.id==='yuzuki')}</div><div class="grow"><b>${h.name}</b><small>${h.type}・${h.disc} ・ ${h.club}</small><small class="num">サポーター ${h.supporters.toLocaleString()}人</small></div></button><button class="oshi ${isOshi(h.id)?'on':''}" data-act="oshi" data-arg="${h.id}" aria-label="推す">${isOshi(h.id)?I.heartF:I.heart}</button></div>`).join('')}
-  ${list.length? '' : '<div class="empty">該当する馬がいません。条件を変えてみてください。</div>'}
+  <div class="filter-caption">気になる特徴から絞り込む</div><div class="filters" style="padding-bottom:12px">${popularTags.map(t=>`<button class="${S.tagFilter===t?'on':''}" data-act="tagFilter" data-arg="${S.tagFilter===t?'':t}">${t}</button>`).join('')}</div>
+  ${list.map(h=>`<div class="hrow"><button class="row grow" data-act="horse" data-arg="${h.id}" style="text-align:left"><div class="thumb">${h.hero&&MEDIA[h.hero]?`<img class="scene" src="${MEDIA[h.hero]}" alt="" style="object-fit:cover;object-position:${h.heroPos||'50% 50%'}">`:scene(h.coat,'day',h.id==='yuzuki')}</div><div class="grow"><b>${h.name}</b><small>${h.type}・${h.disc} ・ ${h.club}</small><small class="num">サポーター ${h.supporters.toLocaleString()}人</small>${horseTagMarkup(h)}</div></button><button class="oshi ${isOshi(h.id)?'on':''}" data-act="oshi" data-arg="${h.id}" aria-label="推す">${isOshi(h.id)?I.heartF:I.heart}</button></div>`).join('')}
+  ${list.length?'':'<div class="empty">条件に合う馬がいません。別のタグを試してみてください。</div>'}
   <div class="sec"><h3>経営者ルーム</h3><p class="mute" style="font-size:12.5px;line-height:1.5;margin-bottom:6px">この会社をつくる2人の成長の軌跡も、推せます。</p></div>
   ${S.founders.map(f=>`<div class="hrow"><button class="row grow" data-act="founder" data-arg="${f.id}" style="text-align:left">${favatar(f,48,22)}<div class="grow"><b>${f.name}　<span class="mute" style="font-weight:600;font-size:12px">${f.role}・${f.room}</span></b><small>${f.line}</small><small class="num">推している人 ${f.fans}人</small></div></button><button class="oshi ${isOshiF(f.id)?'on':''}" data-act="oshiF" data-arg="${f.id}" aria-label="推す">${isOshiF(f.id)?I.heartF:I.heart}</button></div>`).join('')}
   <div class="sec" style="padding-bottom:24px"><h3>近くで推せる</h3><p class="mute" style="font-size:13px;line-height:1.6">位置情報をオンにすると、乗馬クラブや牧場で公開している馬が地図で見られます。次の週末に会いに行ける馬から、推し活を始められます。</p><button class="btn ghost sm" style="margin-top:10px" data-act="toast" data-arg="デモでは位置情報は使いません">${I.pin}地図で見る</button></div>`;
 }
-
+function viewCommunity(){
+  const joined=S.communityJoined||[], hid=S.communityHorse||S.user.oshi[0]||'sora', h=H(hid);
+  const posts=(S.communityPosts||[]).filter(p=>p.h===hid);
+  const memberCount=hid==='sora'?'1,284':hid==='yuzuki'?'862':'436';
+  return `<div class="community-top"><div><span class="eyebrow">UMAPI COMMUNITY</span><h1 class="page">ファンコミュニティ</h1></div><button class="community-compose" data-act="communityCompose" aria-label="投稿する">＋</button></div>
+  <p class="lead">同じ馬を推している仲間と、好きなところを語り合おう。</p>
+  <div class="community-horse-strip">${S.horses.map(x=>{const active=x.id===hid;return `<button class="community-horse ${active?'active':''}" data-act="communityHorse" data-arg="${x.id}">${avatar(x,'',34)}<span>${x.name}</span></button>`;}).join('')}</div>
+  <section class="community-cover">
+    <div class="community-cover-head">${avatar(h,'',48)}<div class="grow"><b>${h.name} ファンコミュニティ</b><small>@${h.id}_fans ・ 公開コミュニティ</small></div><span class="chip">公式連携</span></div>
+    <p>大好きな${h.name}の今日を、みんなで見守る場所。</p>
+    <div class="community-stats"><span><b>${memberCount}</b> メンバー</span><span><b>${posts.length+128}</b> 投稿</span><span><b>毎日</b> 更新中</span></div>
+    <button class="btn ${joined.includes(hid)?'ghost':'primary'} sm community-join" data-act="joinCommunity" data-arg="${hid}">${joined.includes(hid)?'✓ 参加中':'コミュニティに参加する'}</button>
+  </section>
+  <div class="community-feed-head"><div><b>タイムライン</b><small> ${h.name}を推すみんなの投稿</small></div><span class="feed-sort">おすすめ ▾</span></div>
+  ${posts.map(p=>`<article class="xpost"><div class="xpost-avatar">${avatar(h,'',42)}</div><div class="xpost-main"><div class="xpost-meta"><b>${esc(p.by)}</b><span>@${esc(p.by.toLowerCase().replace(/[^a-z0-9]/g,'fan'))} ・ ${esc(p.when)}</span><span class="chip">同じ推し</span></div><p>${esc(p.text)}</p><div class="xpost-actions"><button data-act="communityLike" data-arg="${p.id}">♡ <span>${p.likes||0}</span></button><button data-act="communityComment" data-arg="${p.id}">コメント <span>${p.comments?.length||0}</span></button><button data-act="toast" data-arg="投稿をブックマークしました">☆ 保存</button></div>${(p.comments||[]).slice(-2).map(c=>`<div class="xcomment"><b>${esc(c.by)}</b> ${esc(c.text)}</div>`).join('')}</div></article>`).join('')}
+  ${posts.length?'':'<div class="empty">この馬のコミュニティには、まだ投稿がありません。最初の投稿をしてみよう！</div>'}
+  <button class="community-fab" data-act="communityCompose">＋ 投稿する</button>`;
+}
+function viewDM(){
+  const h=H('sora');
+  return `<div class="dm-page"><div class="dm-title"><div><span class="eyebrow">DIRECT MESSAGE</span><h1 class="page">メッセージ</h1></div><span class="dm-unread">1件の新着</span></div>
+  <div class="dm-thread-head">${avatar(h,'',42)}<div class="grow"><b>${h.name} 公式アカウント</b><small>推し馬アカウント ・ メッセージ</small></div><span class="chip">公式</span></div>
+  <div class="dm-date">今日</div>
+  <div class="dm-bubble-row">${avatar(h,'',32)}<div class="dm-bubble-wrap"><small>${h.name} 公式アカウント</small><div class="dm-bubble">こんにちは！いつも応援ありがとうございます🐴<br>今日、あなたが送ってくれた人参をおいしく食べました！そのときの様子をお届けします🥕</div><div class="dm-video-card"><video controls playsinline preload="metadata" poster="" src="media/carrot-thank-you.mp4"></video><div class="dm-video-caption"><b>🥕 あなたの人参を食べたよ！</b><small>今日のお礼動画 ・ 25秒</small></div></div><small class="dm-time">15:42</small></div></div>
+  <div class="dm-own"><div class="dm-own-bubble">食べてくれてうれしい！これからも応援してるよ♡</div><small>既読 15:46</small></div>
+  <div class="dm-reply-note">この画面はデモです。実際のDM送受信にはアカウント連携が必要です。</div>
+  <div class="dm-input"><span>メッセージを入力…</span><button data-act="toast" data-arg="デモではメッセージ送信はできません">➤</button></div></div>`;
+}
+function viewShop(){
+  const items=[
+    {id:'poster',name:'推し馬ポスター',desc:'お部屋に飾れるA3サイズ',price:1800,emoji:'🖼️',visual:'poster'},
+    {id:'clearfile',name:'オリジナルクリアファイル',desc:'毎日使える全3デザイン',price:650,emoji:'📁',visual:'file'},
+    {id:'plush',name:'おすわりぬいぐるみ',desc:'ふわふわ手のひらサイズ',price:3200,emoji:'🧸',visual:'plush'},
+    {id:'badge',name:'推し馬アクリルキーホルダー',desc:'バッグにつけていつでも一緒',price:900,emoji:'🐴',visual:'key'}
+  ];
+  return `<div class="shop-page"><span class="eyebrow">UMAPI OFFICIAL STORE</span><h1 class="page">推し活グッズ</h1><p class="lead">大好きな推し馬を、いつでもそばに。</p>
+  <div class="shop-hero"><span>YOUR OSHI, ALWAYS WITH YOU</span><b>推し馬との毎日を、<br>もっと楽しく。</b><small>ポスター・文具・ぬいぐるみなど、うまぴ限定グッズ</small></div>
+  <div class="shop-section-head"><b>人気のアイテム</b><span>すべて見る</span></div>
+  <div class="shop-grid">${items.map(it=>`<article class="shop-item"><div class="shop-art ${it.visual}"><span>${it.emoji}</span><small>うまぴ</small></div><div class="shop-item-info"><b>${it.name}</b><small>${it.desc}</small><strong>¥${it.price.toLocaleString('ja-JP')}</strong><button class="btn primary sm" data-act="shopAdd" data-arg="${it.id}">カートに入れる</button></div></article>`).join('')}</div>
+  <div class="shop-footnote">※商品・価格はデモ用のサンプルです。購入・決済はできません。</div></div>`;
+}
 /* calendar */
 function viewCalendar(){
   return `
@@ -892,9 +1059,16 @@ function renderModal(){
     body = `<h2>投稿する</h2><p class="sub">投稿はすぐにファンのタイムラインに表示されます。</p>
       <div class="field"><label>馬</label><select id="ph">${hs.map(x=>`<option value="${x.id}">${x.name}</option>`).join('')}</select></div>
       <div class="field"><label>写真・動画（デモでは選択式）</label><select id="psc"><option value="img:team">部員と（写真）</option><option value="img:paddock">馬場で放牧（写真）</option><option value="img:still">厩舎から（写真）</option><option value="video:live">厩舎カメラ（動画）</option><option value="morning">イラスト：朝の調教</option><option value="dusk">イラスト：夕方の手入れ</option></select></div>
+      <div class="field"><label>性格タグ（複数選択可）</label><div class="tag-picks">${selectedTagButtons(PERSONALITY_TAGS,'personalityTags')}</div></div>
+      <div class="field"><label>毛色タグ</label><div class="tag-picks">${selectedTagButtons(COAT_TAGS,'coatTags')}</div></div>
       <div class="field"><label>ひとこと</label><textarea id="ptx" rows="3">今日は少し暑かったので、放牧を朝早めに切り上げました。水浴びが好きで、ホースを見ると自分から寄ってきます。</textarea></div>
       <label class="row" style="font-size:13px;margin-bottom:14px;gap:8px"><input type="checkbox" id="plock"> サポーター限定にする</label>
       <button class="btn primary block" data-act="publish">${I.edit}投稿する</button>`;
+  } else if (m.t === 'communityCompose') {
+    body = `<h2>ファンルームに投稿</h2><p class="sub">同じ馬を応援するファンに、近況や感想を共有しましょう。</p><div class="field"><label>投稿先の馬</label><select id="communityHorse">${S.horses.map(x=>`<option value="${x.id}" ${m.h===x.id?'selected':''}>${x.name}</option>`).join('')}</select></div><div class="field"><label>メッセージ</label><textarea id="communityTx" rows="4" placeholder="推し馬の好きなところ、今日の発見など"></textarea></div><button class="btn primary block" data-act="publishCommunity">投稿する</button>`;
+  } else if (m.t === 'communityComment') {
+    const cp=S.communityPosts.find(x=>x.id===m.postId);
+    body = `<h2>コメントする</h2><p class="sub">${cp?esc(cp.text):''}</p><div class="field"><label>コメント</label><textarea id="communityCommentTx" rows="3" placeholder="やさしい言葉で交流しましょう"></textarea></div><button class="btn primary block" data-act="sendCommunityComment">コメントを送る</button>`;
   } else if (m.t === 'report') {
     const presets = [['装蹄（4本）',18000,'装蹄'],['獣医 往診・治療',12000,'獣医・治療'],['飼料・牧草（追加分）',45000,'飼料・牧草'],['大会輸送（往復）',30000,'大会・輸送']];
     body = `<h2>使途を報告する</h2><p class="sub">レシートの写真を登録すると、金額と分類を自動で読み取ります。デモでは項目を選んで登録します。</p>
@@ -954,13 +1128,23 @@ function act(name, arg, el){
     case 'usage': S.modal = {t:'usage', h:arg}; break;
     case 'live': S.modal = {t:'live', h:arg}; break;
     case 'book': S.modal = {t:'book', ev:arg}; break;
-    case 'compose': S.modal = {t:'compose'}; break;
+    case 'compose': S.modal = {t:'compose',personalityTags:[],coatTags:[]}; break;
     case 'report': S.modal = {t:'report', sel:0}; break;
     case 'pick': { const v = isNaN(+arg)? arg : +arg; S.modal.sel = v; if (S.modal.t==='gift') S.modal.msg = ($('#msg')||{}).value||''; break; }
     case 'closeModal': S.modal = null; break;
     case 'toast': toast(arg); return;
     case 'query': return; // handled on input
     case 'filter': S.filter = arg; break;
+    case 'tagFilter': S.tagFilter = arg; break;
+    case 'joinCommunity': { const i=S.communityJoined.indexOf(arg); if(i>=0)S.communityJoined.splice(i,1);else S.communityJoined.push(arg); S.communityHorse=arg; toast(i>=0?'コミュニティから退出しました':'コミュニティに参加しました'); break; }
+    case 'communityHorse': S.communityHorse=arg; break;
+    case 'shopAdd': toast('デモカートに追加しました'); break;
+    case 'communityCompose': S.modal={t:'communityCompose',h:S.communityHorse||S.communityJoined[0]||'sora'}; break;
+    case 'communityLike': { const cp=S.communityPosts.find(x=>x.id===arg); if(cp)cp.likes=(cp.likes||0)+1; break; }
+    case 'communityComment': S.modal={t:'communityComment',postId:arg}; break;
+    case 'toggleTag': { const [kind,val]=arg.split('|'); S.modal[kind] ||= []; const j=S.modal[kind].indexOf(val); if(j>=0)S.modal[kind].splice(j,1);else S.modal[kind].push(val); break; }
+    case 'publishCommunity': { const tx=($('#communityTx')||{}).value||'',hid=$('#communityHorse').value;if(!tx.trim()){toast('投稿内容を入力してください');return;}S.communityPosts.unshift({id:'c'+Date.now(),h:hid,by:S.user.name,when:'いま',text:tx.trim(),comments:[],likes:0});if(!S.communityJoined.includes(hid))S.communityJoined.push(hid);S.modal=null;toast('ファンルームに投稿しました');break; }
+    case 'sendCommunityComment': { const tx=($('#communityCommentTx')||{}).value||'',cp=S.communityPosts.find(x=>x.id===S.modal.postId);if(!tx.trim()||!cp){toast('コメントを入力してください');return;}cp.comments.push({by:S.user.name,text:tx.trim()});S.modal=null;toast('コメントしました');break; }
     case 'sendGift': {
       const g = GIFTS.find(g=>g.id===S.modal.sel), h = H(arg);
       h.raised += g.price; h.total += g.price; S.user.total += g.price; S.user.gifts++;
@@ -980,7 +1164,7 @@ function act(name, arg, el){
     case 'publish': {
       const hid = $('#ph').value, sc = $('#psc').value, tx = $('#ptx').value.trim(), lock = $('#plock').checked;
       if (!tx) { toast('ひとことを入力してください'); return; }
-      const np = {id:'p'+Date.now(), h:hid, when:'いま', text:(lock?'サポーター限定：':'')+tx, locked:lock};
+      const np = {id:'p'+Date.now(), h:hid, when:'いま', text:(lock?'サポーター限定：':'')+tx, locked:lock, personalityTags:S.modal?.personalityTags||[], coatTag:(S.modal?.coatTags||[])[0]||''};
       if (sc.startsWith('img:')) np.img = sc.slice(4); else if (sc.startsWith('video:')) np.video = sc.slice(6); else np.scene = sc;
       S.posts.unshift(np);
       S.modal = null; toast(`${H(hid).name}の投稿を公開しました。ファン画面のタイムラインに表示されます`); break; }
