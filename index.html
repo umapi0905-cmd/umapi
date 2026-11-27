@@ -435,9 +435,23 @@
   .reel-empty{padding:35px 24px;text-align:center;color:#fff}
   .reel-empty p{color:#d5ddd7;font-size:13px;line-height:1.6}
   .reel-top{position:absolute;z-index:3;top:12px;left:16px;font-weight:800;text-shadow:0 1px 5px #000}
-  .race-data{margin:14px 20px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fafbf8}
-  .race-data h3{font-size:14px;margin-bottom:6px}.race-data p{font-size:12px;color:var(--mute);line-height:1.55}
-  .race-data a{display:inline-block;margin-top:9px;color:var(--turf-2);font-size:12px;font-weight:700}
+  .race-data{margin:14px 20px;padding:15px;border:1px solid var(--line);border-radius:14px;background:#fafbf8}
+  .race-data h3{font-size:15px;margin:0 0 4px}.race-data-top{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+  .race-name{font-size:11px;color:var(--mute);background:#edf1eb;border-radius:20px;padding:4px 8px}
+  .race-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px 0}
+  .race-stats div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 7px;min-width:0}
+  .race-stats b{display:block;font-size:13px;line-height:1.35;overflow-wrap:anywhere}
+  .race-stats small,.race-pedigree small{display:block;font-size:10px;color:var(--mute);margin-top:4px}
+  .race-section{margin-top:13px}.race-section>b{font-size:13px}
+  .race-pedigree{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:7px}
+  .race-pedigree span{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px;overflow-wrap:anywhere}
+  .race-record,.race-best{font-size:12px;color:var(--mute);margin-top:5px}
+  .race-list{margin-top:7px;background:#fff;border-radius:10px;padding:0 9px}
+  .race-row{display:grid;grid-template-columns:78px 1fr auto;gap:4px 8px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center;font-size:11px}
+  .race-row:last-child{border-bottom:0}.race-row>span,.race-row small{color:var(--mute)}.race-row b{font-size:11px}.race-row strong{font-size:11px;color:var(--turf-2)}.race-row small{grid-column:2/4}
+  .race-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.race-links a{color:var(--turf-2);font-size:11px;font-weight:700;text-decoration:underline}
+  .race-source{font-size:10px!important;color:var(--mute);line-height:1.5;margin-top:9px}
+  @media(max-width:380px){.race-stats{grid-template-columns:1fr}.race-pedigree{grid-template-columns:1fr}.race-row{grid-template-columns:72px 1fr auto}}
 
 </style>
 </head>
@@ -543,79 +557,30 @@ const CAT_COLORS = {'飼料・牧草':'#4C8A55','獣医・治療':'#8A5A2B','装
 
 /* ---------------- data ---------------- */
 const HORSES = [
-  {id:'sora', name:'ダノンイチロウ', type:'馬術馬', disc:'障害飛越', age:null, sex:'', coat:'bay', club:'京都産業大学馬術部', place:'京都府', ownerId:'kyoto', hero:'paddock', heroPos:'50% 42%', photo:'avatar',
-   supporters:128, goal:400000, raised:312000, total:2140000,
-   bio:'競走馬を引退後、リトレーニングを経て京都産業大学馬術部へ。障害飛越で、部員と一緒に大会を目指している。',
-   story:[{d:'',t:'競走馬としてデビュー'},{d:'',t:'競走馬を引退'},{d:'',t:'リトレーニングを経て乗用馬へ'},{d:'',t:'京都産業大学馬術部に入厩'},{d:'2026.09',t:'うまぴ 公認馬 第1号に登録'},{d:'2026.10',t:'全日本学生馬術大会 予選 出場予定',f:1}],
-   ped:null, next:'ev2',
-   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
-  {id:'minato', name:'ミナトカゼ', type:'現役競走馬', disc:'地方競馬', age:4, sex:'牡', coat:'black', club:'みなと厩舎', place:'神奈川県', ownerId:'minato',
-   supporters:341, goal:700000, raised:455000, total:5230000,
-   bio:'地方競馬で3勝。次走は9月21日の第8R。追い切りの時計は自己ベスト。',
-   story:[{d:'2024.09',t:'デビュー（地方競馬）'},{d:'2025.03',t:'初勝利'},{d:'2025.12',t:'重賞初出走（5着）'},{d:'2026.09',t:'第8R 出走予定（9/21）',f:1}],
-   ped:{sire:'ミナトノオウ', dam:'カゼノシラベ', kids:[]}, next:'ev1',
-   usage:{'飼料・牧草':30,'獣医・治療':15,'装蹄':10,'預託・輸送':30,'手数料':15}},
-  {id:'yuzuki', name:'ユウヅキ', type:'引退馬', disc:'養老牧場', age:22, sex:'牝', coat:'chestnut', club:'ひだか養老牧場', place:'北海道', ownerId:'hidaka',
-   supporters:892, goal:250000, raised:238000, total:9870000,
-   bio:'現役時代に重賞2勝。繁殖牝馬として6頭を産み、2024年から養老牧場で余生を過ごす。',
-   story:[{d:'2007.10',t:'デビュー'},{d:'2009.05',t:'重賞2勝目'},{d:'2010.11',t:'引退。繁殖牝馬へ'},{d:'2024.03',t:'最後の子ツキノコを出産。繁殖を引退'},{d:'2024.06',t:'ひだか養老牧場へ'},{d:'2026.10',t:'公開放牧・面会デー（10/19）',f:1}],
-   ped:{sire:'ツキノミヤコ', dam:'ユウナギ', kids:[{n:'ツキノコ',id:'tsukinoko'},{n:'ツキシロ'},{n:'ユウヅキノハナ'}]}, next:'ev3',
-   usage:{'飼料・牧草':45,'獣医・治療':22,'装蹄':10,'施設・放牧地':8,'手数料':15}},
-  {id:'haru', name:'ハルノアラシ', type:'乗馬', disc:'こども乗馬', age:12, sex:'牡', coat:'grey', club:'湘南ライディングクラブ', place:'神奈川県', ownerId:'shonan',
-   supporters:76, goal:300000, raised:121000, total:980000,
-   bio:'競走馬引退後、5年間競馬場の誘導馬として勤務。いまは乗馬クラブでこどもたちの先生。',
-   story:[{d:'2016.06',t:'デビュー'},{d:'2019.02',t:'引退。競馬場の誘導馬に'},{d:'2024.06',t:'乗馬クラブへ。こども乗馬の担当'},{d:'2026.11',t:'クラブ祭 見学・体験乗馬（11/8）',f:1}],
-   ped:{sire:'アラシノコエ', dam:'ハルヒカリ', kids:[]}, next:'ev5',
-   usage:{'飼料・牧草':42,'獣医・治療':18,'装蹄':15,'施設・放牧地':10,'手数料':15}},
-  {id:'tsukinoko', name:'ツキノコ', type:'産駒', disc:'デビュー前', age:2, sex:'牡', coat:'chestnut', club:'しずない育成牧場', place:'北海道', ownerId:'shizunai',
-   supporters:214, goal:350000, raised:189000, total:1120000,
-   bio:'ユウヅキの最後の子。来年6月のデビューを目指して育成中。母の面影がある栗毛。',
-   story:[{d:'2024.03',t:'ユウヅキの最後の子として誕生'},{d:'2025.10',t:'育成牧場で騎乗馴致を開始'},{d:'2026.10',t:'育成公開デー（10/26）',f:1},{d:'2027.06',t:'デビュー予定',f:1}],
-   ped:{sire:'ホシノミチ', dam:'ユウヅキ', damId:'yuzuki', kids:[]}, next:'ev6',
-   usage:{'飼料・牧草':40,'獣医・治療':20,'育成調教':25,'手数料':15}},
-  {id:'kaze', name:'カゼノオト', type:'馬術馬', disc:'馬場馬術', age:9, sex:'牝', coat:'darkbay', club:'京都産業大学馬術部', place:'京都府', ownerId:'kyoto',
-   supporters:64, goal:380000, raised:152000, total:610000,
-   bio:'競走馬を引退して馬場馬術へ転向。静かな気性で、部員の初めての競技馬になることが多い。',
-   story:[{d:'2019.05',t:'デビュー'},{d:'2021.08',t:'競走馬を引退'},{d:'2022.04',t:'馬場馬術へ転向'},{d:'2026.11',t:'関西学生馬場馬術大会 出場予定（11/3）',f:1}],
-   ped:{sire:'オトノカゼ', dam:'シズカナウミ', kids:[]}, next:'ev4',
-   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
   {id:'solaris', name:'ソラリス', type:'馬術馬', disc:'総合馬術', age:null, sex:'', birth:'2014年5月14日', coat:'bay', club:'京都産業大学馬術部', place:'京都府', ownerId:'kyoto', hero:'solaris1', photo:'solaris1', heroPos:'50% 38%',
    supporters:0, goal:300000, raised:0, total:0,
-   bio:'2014年5月14日生まれ。かまってほしい「かまちょ」な一面があり、放牧が大好き。出っ歯もチャームポイントで、頑張り屋さんの総合馬術馬。',
+   bio:'2014年5月14日生まれ。競走馬時代の登録名はサンシロウ。現在はソラリスとして京都産業大学馬術部で総合馬術に取り組む。かまってほしい「かまちょ」な一面があり、放牧が大好き。出っ歯もチャームポイントで、頑張り屋さん。',
    story:[{d:'2014.05.14',t:'誕生'},{d:'',t:'京都産業大学馬術部で総合馬術に取り組む'}], ped:null, next:null,
-   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
+   raceData:{formerName:'サンシロウ',birth:'2014年5月14日',sex:'せん',coat:'鹿毛',sire:'ネオユニヴァース',dam:'テンイムホウ',damsire:'ラムタラ',record:'57戦3勝',breakdown:'3-11-2-41',earnings:'1億191万円（中央）',local:'0万円（地方）',best:'17’燕特別（500万下）',netkeiba:'https://db.netkeiba.com/horse/2014103367/',pedigree:'https://db.netkeiba.com/horse/ped/2014103367/',results:'https://db.netkeiba.com/horse/result/2014103367/',races:[{date:'2023/02/18',name:'障害4歳以上未勝利',result:'11着',detail:'小倉・障2860m'},{date:'2022/06/05',name:'ホンコンJCT（2勝クラス）',result:'7着',detail:'東京・芝2000m'},{date:'2019/11/30',name:'ステイヤーズS（GII）',result:'5着',detail:'中山・芝3600m'}]},usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
   {id:'dorado', name:'ドラド', type:'馬術馬', disc:'総合馬術', age:null, sex:'', birth:'2017年5月6日', coat:'darkbay', club:'京都産業大学馬術部', place:'京都府', ownerId:'kyoto', hero:'dorado1', photo:'dorado1', heroPos:'50% 35%',
    supporters:0, goal:300000, raised:0, total:0,
-   bio:'2017年5月6日生まれ。クールな雰囲気のイケメン。引き手を噛みちぎってしまうお茶目（？）な一面もある総合馬術馬。',
+   bio:'2017年5月6日生まれ。競走馬時代の登録名はレッドレビン。現在はドラドとして京都産業大学馬術部で総合馬術に取り組む。クールな雰囲気のイケメン。引き手を噛みちぎってしまうお茶目（？）な一面もある。',
    story:[{d:'2017.05.06',t:'誕生'},{d:'',t:'京都産業大学馬術部で総合馬術に取り組む'}], ped:null, next:null,
-   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
+   raceData:{formerName:'レッドレビン',birth:'2017年5月6日',sex:'せん',coat:'鹿毛',sire:'キズナ',dam:'リメレンス',damsire:'Seeking the Gold',record:'27戦2勝',breakdown:'2-4-9-12',earnings:'4,585万円（中央）',local:'0万円（地方）',best:'21’4歳以上1勝クラス',netkeiba:'https://db.netkeiba.com/horse/2017106255/',pedigree:'https://db.netkeiba.com/horse/ped/2017106255/',results:'https://db.netkeiba.com/horse/result/2017106255/',races:[{date:'2023/02/18',name:'障害4歳以上未勝利',result:'12着',detail:'小倉・障2860m'},{date:'2022/10/15',name:'3歳以上2勝クラス',result:'8着',detail:'東京・芝2400m'},{date:'2021/05/09',name:'4歳以上1勝クラス',result:'1着',detail:'新潟・ダ1800m'},{date:'2020/05/17',name:'3歳未勝利',result:'1着',detail:'京都・ダ1800m'}]},usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
   {id:'meisa', name:'メイサ', type:'馬術馬', disc:'総合馬術', age:null, sex:'', birth:'2010年3月28日', coat:'chestnut', club:'京都産業大学馬術部', place:'京都府', ownerId:'kyoto', hero:'meisa1', photo:'meisa1', heroPos:'50% 38%',
    supporters:0, goal:300000, raised:0, total:0,
    bio:'2010年3月28日生まれ。犬系男子な性格で、おねだり上手だけどちょっぴりビビり。栗毛がきれいな総合馬術馬。',
    story:[{d:'2010.03.28',t:'誕生'},{d:'',t:'京都産業大学馬術部で総合馬術に取り組む'}], ped:null, next:null,
-   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}},
+   usage:{'飼料・牧草':40,'獣医・治療':20,'装蹄':12,'大会・輸送':13,'手数料':15}}
 ];
 const PERSONALITY_TAGS = ['おとなしい','人懐っこい','怒りん坊','寂しがりや','好奇心旺盛','甘えん坊','マイペース','食いしん坊','慎重派','遊び好き','かまちょ','クール系','犬系男子'];
 const COAT_TAGS = ['鹿毛（かげ）','黒鹿毛（くろかげ）','青鹿毛（あおかげ）','青毛（あおげ）','栗毛（くりげ）','栃栗毛（とちくりげ）','芦毛（あしげ）','白毛（しろげ）','月毛（つきげ）','河原毛（かわらげ）','粕毛（かすげ）','駁毛（ぶちげ）','佐目毛（さめげ）','薄墨毛（うすずみげ）'];
 const HORSE_TAG_DEFAULTS = {
-  sora:{personality:['人懐っこい','好奇心旺盛','マイペース'],coat:'鹿毛（かげ）'},
-  minato:{personality:['好奇心旺盛'],coat:'青毛（あおげ）'},
-  yuzuki:{personality:['おとなしい','寂しがりや','甘えん坊'],coat:'栗毛（くりげ）'},
-  haru:{personality:['おとなしい','人懐っこい'],coat:'芦毛（あしげ）'},
-  tsukinoko:{personality:['好奇心旺盛','遊び好き'],coat:'栗毛（くりげ）'},
-  kaze:{personality:['おとなしい','慎重派','マイペース'],coat:'黒鹿毛（くろかげ）'},
   solaris:{personality:['かまちょ'],features:['出っ歯','頑張り屋さん','放牧大好き'],coat:'鹿毛（かげ）'},
   dorado:{personality:['クール系'],features:['引き手を噛みちぎる','イケメン'],coat:'黒鹿毛（くろかげ）'},
   meisa:{personality:['犬系男子'],features:['おねだり','ビビり'],coat:'栗毛（くりげ）'}
 };
-const EVENTS = [
-  {id:'ev1', m:'9月', d:'21', w:'日', horse:'minato', title:'第8R 出走（1400m）', place:'湾岸競馬場', kind:'race', stream:true, tour:{label:'現地観戦ツアー', price:12800, seats:8}},
-  {id:'ev2', m:'10月', d:'12', w:'月・祝', horse:'sora', title:'全日本学生馬術大会 予選（障害飛越110cm）', place:'京阪奈馬術競技場', kind:'match', stream:true, tour:{label:'応援バスツアー', price:6500, seats:20}},
-  {id:'ev3', m:'10月', d:'19', w:'月', horse:'yuzuki', title:'公開放牧・面会デー', place:'ひだか養老牧場', kind:'meet', tour:{label:'面会デーに参加', price:5500, seats:12}},
-  {id:'ev6', m:'10月', d:'26', w:'月', horse:'tsukinoko', title:'育成公開デー', place:'しずない育成牧場', kind:'meet', tour:{label:'見学ツアー', price:4500, seats:15}},
-  {id:'ev4', m:'11月', d:'3', w:'火・祝', horse:'kaze', title:'関西学生馬場馬術大会', place:'京阪奈馬術競技場', kind:'match', stream:true, tour:{label:'観戦チケット', price:2000, seats:40}},
-  {id:'ev5', m:'11月', d:'8', w:'日', horse:'haru', title:'クラブ祭 見学・体験乗馬', place:'湘南ライディングクラブ', kind:'meet', tour:{label:'体験乗馬つきで参加', price:8800, seats:10}},
-];
+const EVENTS = [];
 const FOUNDERS = [
   {id:'era', name:'えら', role:'CEO', room:'CEOルーム', color:'#8A5A2B', bg:'#F1E6DA',
    line:'推しの熱愛発覚で降りた私が、消えない推し活をつくる',
@@ -623,7 +588,7 @@ const FOUNDERS = [
    fans:212, cheers:48, goal:'2027年3月までに有料会員1,000人',
    path:[
      {d:'2026.08', t:'起業合宿で「馬の推し活」を着想', done:true},
-     {d:'2026.09', t:'ダノンイチロウに会う。馬を推すと決める', done:true},
+     {d:'2026.09', t:'ソラリスに会う。馬を推すと決める', done:true},
      {d:'2026.09', t:'投資家向けピッチに初挑戦', done:true},
      {d:'2026.10', t:'顧客インタビュー100人（推し活層）'},
      {d:'2026.12', t:'MVP公開。最初の有料会員'},
@@ -643,7 +608,7 @@ const FOUNDERS = [
    path:[
      {d:'2026.04', t:'馬術部で担当馬を持つ', done:true},
      {d:'2026.08', t:'起業合宿。馬の側から事業を設計', done:true},
-     {d:'2026.09', t:'公認馬 第1号 ダノンイチロウを登録', done:true},
+     {d:'2026.09', t:'公認馬 第1号 ソラリスを登録', done:true},
      {d:'2026.11', t:'乗馬クラブ・馬術部 5か所と提携'},
      {d:'2027.03', t:'公認馬50頭。養老牧場との提携開始'},
      {d:'2028', t:'引退馬の受け入れ先ネットワークを全国に'},
@@ -669,58 +634,30 @@ const FGIFTS = [
   {id:'book', name:'経営の本1冊', price:2000, note:'読んだ本は月報で紹介します'},
 ];
 const OWNERS = {
-  kyoto:{name:'京都産業大学馬術部', horses:['sora','kaze','solaris','dorado','meisa'], contact:'馬術部 主務'},
+  kyoto:{name:'京都産業大学馬術部', horses:['solaris','dorado','meisa'], contact:'馬術部 主務'},
 };
 
 function freshState(){
   return {
     mode:'fan', tab:'home', horseId:null, modal:null, filter:'すべて', query:'', tagFilter:'', step:1, zoom:1,
     likes:{}, likeCounts:{p1:212,p10:341,p11:287,p2:388,p3:914,p4:76,p5:305,p6:141,p7:98,p8:120,p9:266},
-    user:{name:'ゆき', oshi:['sora','yuzuki'], oshiF:['era'], tiers:{yuzuki:'light'}, total:12300, gifts:9, bookings:[]},
-    communityJoined:['sora','yuzuki'],
-    communityPosts:[
-      {id:'c1',h:'sora',by:'mio',when:'15分前',text:'ダノンイチロウの放牧中の表情、今日はいつもよりごきげんに見えますね！みなさんの好きな写真はどれですか？',comments:[{by:'K.T.',text:'砂を掘ってる写真が好きです！'}],likes:18},
-      {id:'c2',h:'yuzuki',by:'はなこ',when:'2時間前',text:'ユウヅキの長生きの秘訣、みんなで見守っていきたいですね。ふやかした飼料を完食した投稿にほっとしました。',comments:[{by:'Ashley',text:'毎日の小さな変化を共有できるのがうれしいです'}],likes:32}
-    ],
+    user:{name:'ゆき', oshi:['solaris','dorado','meisa'], oshiF:['era'], tiers:{}, total:12300, gifts:9, bookings:[]},
+    communityJoined:['solaris'],
+    communityPosts:[],
     posts:[
       {id:'ps1',h:'solaris',when:'新着',img:'solaris2',text:'障害に向かって頑張るソラリス。放牧が大好きな、かまちょさんです。'},
       {id:'ps2',h:'solaris',when:'新着',img:'solaris3',text:'部員と一緒に。頑張り屋さんなソラリスの一枚。'},
-      {id:'ps3',h:'solaris',when:'新着',img:'solaris4',text:'大好きなにんじんをくわえるソラリス。'},
+      {id:'ps3',h:'solaris',when:'新着',img:'solaris4',text:'大好きなにんじんをくわえるサンシロウ。'},
       {id:'pd1',h:'dorado',when:'新着',img:'dorado2',text:'お昼寝中のドラド。クールなだけじゃない一面も。'},
       {id:'pd2',h:'dorado',when:'新着',img:'dorado3',text:'厩舎の外を歩くドラド。'},
-      {id:'pd3',h:'dorado',when:'新着',video:'doradoVideo1',text:'ドラドの動画。'},
-      {id:'pd4',h:'dorado',when:'新着',video:'doradoVideo2',text:'ドラドのもうひとつの動画。'},
+      {id:'pd3',h:'dorado',when:'新着',video:'doradoVideo1',text:'レッドレビンの動画。'},
+      {id:'pd4',h:'dorado',when:'新着',video:'doradoVideo2',text:'レッドレビンのもうひとつの動画。'},
       {id:'pm1',h:'meisa',when:'新着',img:'meisa2',text:'正面からのメイサ。おねだり上手な犬系男子。'},
       {id:'pm2',h:'meisa',when:'新着',img:'meisa3',text:'馬場でのメイサ。'},
       {id:'pm3',h:'meisa',when:'新着',video:'meisaVideo',text:'メイサの動画。'},
-      {id:'p1', h:'sora', when:'10分前', live:true, video:'live', text:'厩舎ライブ配信中。顔を出して、通路を行く部員を見ています。'},
-      {id:'p10', h:'sora', when:'45分前', img:'team', text:'手入れが終わって、部員と記念撮影。今日もよく付き合ってくれました。'},
-      {id:'p2', h:'minato', when:'1時間前', scene:'morning', text:'追い切り終了。時計は自己ベスト。21日の第8Rに向けて、仕上がってきました。'},
-      {id:'p3', h:'yuzuki', when:'3時間前', scene:'day', flip:true, text:'22歳、今朝もしっかり完食。歯が弱ってきたので、ふやかした飼料に切り替えています。'},
-      {id:'p11', h:'sora', when:'昨日', img:'paddock', pos:'50% 45%', text:'青空の下で放牧。馬場の砂を掘っては、こちらの様子をうかがっています。'},
-      {id:'p4', h:'sora', when:'昨日', locked:true, img:'still', pos:'50% 35%', text:'サポーター限定：装蹄師さんの作業を最初から最後まで。今回の蹄鉄は少し幅を広げました。'},
-      {id:'p5', h:'tsukinoko', when:'昨日', scene:'dusk', text:'初めて鞍を乗せました。最初は嫌がっていたけれど、10分で落ち着きました。'},
-      {id:'p6', h:'haru', when:'2日前', scene:'day', flip:true, text:'今日はこども乗馬教室。6歳の子を背に、いつもよりゆっくり歩いてくれました。'},
-      {id:'p7', h:'kaze', when:'2日前', scene:'morning', text:'馬場馬術の練習。半巻き乗りがだいぶ揃ってきました。11月3日の大会が目標です。'},
-      {id:'p8', h:'yuzuki', when:'3日前', locked:true, scene:'stable', text:'サポーター限定：獣医さんの定期検診レポート。血液検査の結果と、今月の治療方針。'},
-      {id:'p9', h:'minato', when:'4日前', scene:'night', text:'夜の厩舎。明日の輸送に備えて、早めに休みます。'},
     ],
-    ledger:[
-      {k:'gift', h:'sora', by:'ゆき', label:'にんじん', amt:300, when:'今日'},
-      {k:'gift', h:'sora', by:'K.T.', label:'牧草ひと束', amt:500, when:'今日'},
-      {k:'sub', h:'sora', by:'馬好き太郎', label:'月額サポーター（スタンダード）', amt:1500, when:'昨日'},
-      {k:'gift', h:'sora', by:'mio', label:'蹄鉄', amt:3000, when:'昨日'},
-      {k:'gift', h:'yuzuki', by:'Ashley', label:'牧草ひと束（シアトルから）', amt:500, when:'昨日'},
-      {k:'gift', h:'minato', by:'ryo', label:'にんじん', amt:300, when:'2日前'},
-      {k:'gift', h:'sora', by:'はなこ', label:'にんじん', amt:300, when:'2日前'},
-    ],
-    reports:[
-      {h:'sora', d:'9/2', label:'装蹄（4本）', amt:18000, cat:'装蹄'},
-      {h:'sora', d:'9/1', label:'飼料・牧草（9月分）', amt:96000, cat:'飼料・牧草'},
-      {h:'sora', d:'8/28', label:'獣医 定期検診', amt:12000, cat:'獣医・治療'},
-      {h:'sora', d:'8/20', label:'大会輸送（往復）', amt:30000, cat:'大会・輸送'},
-      {h:'kaze', d:'9/1', label:'飼料・牧草（9月分）', amt:88000, cat:'飼料・牧草'},
-    ],
+    ledger:[],
+    reports:[],
     horses: JSON.parse(JSON.stringify(HORSES)),
     founders: JSON.parse(JSON.stringify(FOUNDERS)), founderId:null,
     cheers:{era:[{by:'mio',text:'「熱愛発覚しない推し活」、その一言で全部わかりました。応援してます',when:'昨日'},{by:'K.T.',text:'ピッチ、3分オーバーでも伝わったなら勝ちです',when:'昨日'},{by:'Ashley',text:'Following from Seattle. Horses never break your heart.',when:'3日前'}], yama:[{by:'馬好き太郎',text:'養老牧場との提携、楽しみにしています',when:'今日'},{by:'はなこ',text:'馬主になる日まで推します',when:'4日前'}]},
@@ -779,7 +716,7 @@ function videoTag(key, pos){
 }
 function heroOf(h){
   if (h.hero && MEDIA[h.hero]) return `<img class="scene" src="${MEDIA[h.hero]}" alt="" style="object-fit:cover;object-position:${h.heroPos||'50% 50%'}">`;
-  return scene(h.coat, h.id==='minato'?'morning':h.id==='yuzuki'?'dusk':'day', h.id==='yuzuki');
+  return scene(h.coat, 'day', false);
 }
 function avatar(h, extra='', size=48){
   if (h.photo && MEDIA[h.photo]) return `<div class="avatar ${extra}" style="width:${size}px;height:${size}px;background:url(${MEDIA[h.photo]}) center/cover"></div>`;
@@ -889,7 +826,14 @@ function viewHorse(h){
   </div>
   <div class="stats"><div><b class="num">${h.supporters.toLocaleString()}</b><span>サポーター</span></div><div><b class="num">${yenMan(h.total)}</b><span>支援累計</span></div><div><b class="num">${posts.length + 38}</b><span>投稿</span></div></div>
   <p class="lead" style="padding-top:4px">${h.bio}</p>
-  ${/競走馬|引退馬/.test(h.type)?`<div class="race-data"><h3>競走馬データ</h3><p>血統・競走成績・獲得賞金は、馬名と生年を照合してから掲載します。現在のデモ情報は実在の競走データとして確認済みではありません。</p><a href="https://www.netkeiba.com/" target="_blank" rel="noopener">netkeibaで確認する ↗</a></div>`:''}
+  ${h.raceData?`<div class="race-data"><div class="race-data-top"><h3>競走馬時代のデータ</h3><span class="race-name">旧競走馬名：${h.raceData.formerName}</span></div>
+    <div class="race-stats"><div><b>${h.raceData.record}</b><small>通算成績</small></div><div><b>${h.raceData.earnings}</b><small>獲得賞金</small></div><div><b>${h.raceData.local}</b><small>地方獲得賞金</small></div></div>
+    <div class="race-section"><b>血統</b><div class="race-pedigree"><span><small>父</small>${h.raceData.sire}</span><span><small>母</small>${h.raceData.dam}</span><span><small>母の父</small>${h.raceData.damsire}</span></div></div>
+    <div class="race-section"><b>競走成績</b><p class="race-record">${h.raceData.breakdown}（1着-2着-3着-その他）</p><p class="race-best">主な勝ち鞍：${h.raceData.best}</p>
+      <div class="race-list">${h.raceData.races.map(r=>`<div class="race-row"><span>${r.date}</span><b>${r.name}</b><strong>${r.result}</strong><small>${r.detail}</small></div>`).join('')}</div>
+    </div>
+    <div class="race-links"><a href="${h.raceData.netkeiba}" target="_blank" rel="noopener">netkeiba 基本情報 ↗</a><a href="${h.raceData.pedigree}" target="_blank" rel="noopener">血統表 ↗</a><a href="${h.raceData.results}" target="_blank" rel="noopener">全競走成績 ↗</a></div>
+    <p class="race-source">競走馬名・生年月日を照合して掲載。獲得賞金はnetkeiba掲載の中央・地方区分に基づく表示です。</p></div>`:''}
   <div class="cta"><button class="btn brown" data-act="gift" data-arg="${h.id}">${I.carrot}ギフトを贈る</button><button class="btn ${isSub(h.id)?'soft':'primary'}" data-act="sub" data-arg="${h.id}">${isSub(h.id)? I.check+'サポーター中' : I.heart+'サポーターになる'}</button></div>
   <div class="divider"></div>
   <div class="sec"><h3>今月の支援 <a data-act="usage" data-arg="${h.id}">使途レポートを見る</a></h3>
@@ -950,16 +894,16 @@ function viewDiscover(){
   <div class="search">${I.search.replace('<svg','<svg style="width:18px;height:18px"')}<input id="q" placeholder="馬名・性格・毛色・クラブで検索" value="${esc(S.query)}" data-act="query"></div>
   <div class="filters">${fs.map(f=>`<button class="${S.filter===f?'on':''}" data-act="filter" data-arg="${f}">${f}</button>`).join('')}</div>
   <div class="filter-caption">気になる特徴から絞り込む</div><div class="filters" style="padding-bottom:12px">${popularTags.map(t=>`<button class="${S.tagFilter===t?'on':''}" data-act="tagFilter" data-arg="${S.tagFilter===t?'':t}">${t}</button>`).join('')}</div>
-  ${list.map(h=>`<div class="hrow"><button class="row grow" data-act="horse" data-arg="${h.id}" style="text-align:left"><div class="thumb">${h.hero&&MEDIA[h.hero]?`<img class="scene" src="${MEDIA[h.hero]}" alt="" style="object-fit:cover;object-position:${h.heroPos||'50% 50%'}">`:scene(h.coat,'day',h.id==='yuzuki')}</div><div class="grow"><b>${h.name}</b><small>${h.type}・${h.disc} ・ ${h.club}</small><small class="num">サポーター ${h.supporters.toLocaleString()}人</small>${horseTagMarkup(h)}</div></button><button class="oshi ${isOshi(h.id)?'on':''}" data-act="oshi" data-arg="${h.id}" aria-label="推す">${isOshi(h.id)?I.heartF:I.heart}</button></div>`).join('')}
+  ${list.map(h=>`<div class="hrow"><button class="row grow" data-act="horse" data-arg="${h.id}" style="text-align:left"><div class="thumb">${h.hero&&MEDIA[h.hero]?`<img class="scene" src="${MEDIA[h.hero]}" alt="" style="object-fit:cover;object-position:${h.heroPos||'50% 50%'}">`:scene(h.coat,'day',false)}</div><div class="grow"><b>${h.name}</b><small>${h.type}・${h.disc} ・ ${h.club}</small><small class="num">サポーター ${h.supporters.toLocaleString()}人</small>${horseTagMarkup(h)}</div></button><button class="oshi ${isOshi(h.id)?'on':''}" data-act="oshi" data-arg="${h.id}" aria-label="推す">${isOshi(h.id)?I.heartF:I.heart}</button></div>`).join('')}
   ${list.length?'':'<div class="empty">条件に合う馬がいません。別のタグを試してみてください。</div>'}
   <div class="sec"><h3>経営者ルーム</h3><p class="mute" style="font-size:12.5px;line-height:1.5;margin-bottom:6px">この会社をつくる2人の成長の軌跡も、推せます。</p></div>
   ${S.founders.map(f=>`<div class="hrow"><button class="row grow" data-act="founder" data-arg="${f.id}" style="text-align:left">${favatar(f,48,22)}<div class="grow"><b>${f.name}　<span class="mute" style="font-weight:600;font-size:12px">${f.role}・${f.room}</span></b><small>${f.line}</small><small class="num">推している人 ${f.fans}人</small></div></button><button class="oshi ${isOshiF(f.id)?'on':''}" data-act="oshiF" data-arg="${f.id}" aria-label="推す">${isOshiF(f.id)?I.heartF:I.heart}</button></div>`).join('')}
   <div class="sec" style="padding-bottom:24px"><h3>近くで推せる</h3><p class="mute" style="font-size:13px;line-height:1.6">位置情報をオンにすると、乗馬クラブや牧場で公開している馬が地図で見られます。次の週末に会いに行ける馬から、推し活を始められます。</p><button class="btn ghost sm" style="margin-top:10px" data-act="toast" data-arg="デモでは位置情報は使いません">${I.pin}地図で見る</button></div>`;
 }
 function viewCommunity(){
-  const joined=S.communityJoined||[], hid=S.communityHorse||S.user.oshi[0]||'sora', h=H(hid);
+  const joined=S.communityJoined||[], hid=S.communityHorse||S.user.oshi[0]||'solaris', h=H(hid);
   const posts=(S.communityPosts||[]).filter(p=>p.h===hid);
-  const memberCount=hid==='sora'?'1,284':hid==='yuzuki'?'862':'436';
+  const memberCount=hid==='solaris'?'—':hid==='dorado'?'—':'—';
   return `<div class="community-top"><div><span class="eyebrow">UMAPI COMMUNITY</span><h1 class="page">ファンコミュニティ</h1></div><button class="community-compose" data-act="communityCompose" aria-label="投稿する">＋</button></div>
   <p class="lead">同じ馬を推している仲間と、好きなところを語り合おう。</p>
   <div class="community-horse-strip">${S.horses.map(x=>{const active=x.id===hid;return `<button class="community-horse ${active?'active':''}" data-act="communityHorse" data-arg="${x.id}">${avatar(x,'',34)}<span>${x.name}</span></button>`;}).join('')}</div>
@@ -975,7 +919,7 @@ function viewCommunity(){
   <button class="community-fab" data-act="communityCompose">＋ 投稿する</button>`;
 }
 function viewDM(){
-  const h=H('sora');
+  const h=H('solaris');
   return `<div class="dm-page"><div class="dm-title"><div><span class="eyebrow">DIRECT MESSAGE</span><h1 class="page">メッセージ</h1></div><span class="dm-unread">1件の新着</span></div>
   <div class="dm-thread-head">${avatar(h,'',42)}<div class="grow"><b>${h.name} 公式アカウント</b><small>推し馬アカウント ・ メッセージ</small></div><span class="chip">公式</span></div>
   <div class="dm-date">今日</div>
@@ -1019,7 +963,7 @@ function viewMe(){
   const agg = {}; let tot = 0;
   u.oshi.forEach(id => { const h = H(id); Object.entries(h.usage).forEach(([k,v]) => { agg[k]=(agg[k]||0)+v; tot+=v; }); });
   const norm = {}; Object.entries(agg).forEach(([k,v]) => norm[k] = Math.round(v/tot*100));
-  const badges = [['初めてのギフト',I.carrot,true],['3頭を推し中',I.heartF,u.oshi.length>=3],['サポーター',I.star,subs.length>0],['現地で会った',I.pin,u.bookings.length>0],['産駒まで推した',I.trophy,u.oshi.includes('tsukinoko')],['海外の馬を推した',I.globe,false]];
+  const badges = [['初めてのギフト',I.carrot,true],['3頭を推し中',I.heartF,u.oshi.length>=3],['サポーター',I.star,subs.length>0],['現地で会った',I.pin,u.bookings.length>0],['3頭の馬を推し中',I.trophy,u.oshi.length>=3],['海外の馬を推した',I.globe,false]];
   return `
   <h1 class="page">マイページ</h1>
   <div class="me"><div class="av">${u.name[0]}</div><div><b>${u.name}</b><small>推し活 2年目 ・ 2025年からうまぴ</small></div></div>
@@ -1069,7 +1013,7 @@ function renderModal(){
   if (m.t === 'story') {
     const h=H(m.h), items=S.posts.filter(p=>p.h===m.h), p=items[m.i||0];
     if (!p) { S.modal=null; root.innerHTML=''; return; }
-    body=`<div class="story-overlay"><div class="story-progress">${items.map((x,i)=>`<i class="${i<=(m.i||0)?'on':''}"></i>`).join('')}</div><div class="story-head">${avatar(h,'',38)}<div><b>${h.name}</b><small style="display:block;color:#d4ddd6">${p.when||'ストーリー'}</small></div><button data-act="closeModal" style="margin-left:auto;color:white;font-size:22px">×</button></div><div class="story-media">${mediaOf(h,p)}<div class="story-nav"><button data-act="storyPrev" aria-label="前へ"></button><button data-act="storyNext" aria-label="次へ"></button></div></div><div class="story-caption">${esc(p.text||'')}</div></div>`;
+    body=`<div class="story-overlay"><div class="story-progress">${items.map((x,i)=>`<i class="${i<=(m.i||0)?'on':''}"></i>`).join('')}</div><div class="story-head"><button data-act="horse" data-arg="${h.id}" aria-label="${h.name}のプロフィールを見る">${avatar(h,'',38)}</button><div><button data-act="horse" data-arg="${h.id}" style="color:#fff;font-weight:800;text-align:left">${h.name}　›</button><small style="display:block;color:#d4ddd6">${p.when||'ストーリー'}</small></div><button data-act="closeModal" style="margin-left:auto;color:white;font-size:22px">×</button></div><div class="story-media">${mediaOf(h,p)}<div class="story-nav"><button data-act="storyPrev" aria-label="前へ"></button><button data-act="storyNext" aria-label="次へ"></button></div></div><div class="story-caption">${esc(p.text||'')}</div></div>`;
     root.innerHTML=body; return;
   } else if (m.t === 'gift') {
     body = `<h2>${h.name}にギフトを贈る</h2><p class="sub">ギフトはそのまま${h.club}の飼養費になります。使途は1頭ごとに報告されます。</p>
@@ -1152,10 +1096,10 @@ function renderModal(){
 /* ---------------- presenter steps ---------------- */
 const STEPS = [
   ['タイムライン', '推し馬の日常が流れる。LIVE配信・限定投稿もここに', ()=>{S.mode='fan';S.tab='home';S.horseId=null;S.founderId=null;S.modal=null;}],
-  ['推し馬ページ（ダノンイチロウ）', '一生を追える。支援の進み具合と使途を1頭単位で公開', ()=>{S.mode='fan';S.horseId='sora';S.founderId=null;S.modal=null;}],
-  ['ギフトを贈る', '500円台から。贈った金額のうち手数料以外が厩舎へ', ()=>{S.mode='fan';S.horseId='sora';S.founderId=null;S.modal={t:'gift',h:'sora',sel:'carrot'};}],
-  ['サポーターになる', '月額会員。限定投稿が開き、毎月の使途レポートが届く', ()=>{S.mode='fan';S.horseId='sora';S.founderId=null;S.modal={t:'sub',h:'sora',sel:'std'};}],
-  ['使途レポート', '厩舎が登録した支出。透明性がこの事業の差別化', ()=>{S.mode='fan';S.horseId='sora';S.founderId=null;S.modal={t:'usage',h:'sora'};}],
+  ['推し馬ページ（ソラリス）', '一生を追える。支援の進み具合と使途を1頭単位で公開', ()=>{S.mode='fan';S.horseId='solaris';S.founderId=null;S.modal=null;}],
+  ['ギフトを贈る', '500円台から。贈った金額のうち手数料以外が厩舎へ', ()=>{S.mode='fan';S.horseId='solaris';S.founderId=null;S.modal={t:'gift',h:'solaris',sel:'carrot'};}],
+  ['サポーターになる', '月額会員。限定投稿が開き、毎月の使途レポートが届く', ()=>{S.mode='fan';S.horseId='solaris';S.founderId=null;S.modal={t:'sub',h:'solaris',sel:'std'};}],
+  ['使途レポート', '厩舎が登録した支出。透明性がこの事業の差別化', ()=>{S.mode='fan';S.horseId='solaris';S.founderId=null;S.modal={t:'usage',h:'solaris'};}],
   ['現地に会いに行く', '試合・レース・面会デーの予約。体験が単価の階段の上段', ()=>{S.mode='fan';S.horseId=null;S.founderId=null;S.tab='calendar';S.modal=null;}],
   ['供給側（馬術部）の画面', '受取額と手数料。ここから投稿・使途報告をするとファン側に反映', ()=>{S.mode='owner';S.modal=null;}],
   ['経営者ルーム（CEO・COO）', '2人の成長の軌跡を推せる。応援メッセージと少額ギフト', ()=>{S.mode='fan';S.horseId=null;S.founderId='era';S.modal=null;}],
@@ -1212,7 +1156,7 @@ function act(name, arg, el){
     case 'joinCommunity': { const i=S.communityJoined.indexOf(arg); if(i>=0)S.communityJoined.splice(i,1);else S.communityJoined.push(arg); S.communityHorse=arg; toast(i>=0?'コミュニティから退出しました':'コミュニティに参加しました'); break; }
     case 'communityHorse': S.communityHorse=arg; break;
     case 'shopAdd': toast('デモカートに追加しました'); break;
-    case 'communityCompose': S.modal={t:'communityCompose',h:S.communityHorse||S.communityJoined[0]||'sora'}; break;
+    case 'communityCompose': S.modal={t:'communityCompose',h:S.communityHorse||S.communityJoined[0]||'solaris'}; break;
     case 'communityLike': { const cp=S.communityPosts.find(x=>x.id===arg); if(cp)cp.likes=(cp.likes||0)+1; break; }
     case 'communityComment': S.modal={t:'communityComment',postId:arg}; break;
     case 'toggleTag': { const [kind,val]=arg.split('|'); S.modal[kind] ||= []; const j=S.modal[kind].indexOf(val); if(j>=0)S.modal[kind].splice(j,1);else S.modal[kind].push(val); break; }
